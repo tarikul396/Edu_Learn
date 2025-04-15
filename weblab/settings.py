@@ -33,8 +33,8 @@ if ENVIRONMENT == "development":
     ALLOWED_HOSTS = []
 else:
     DEBUG = False
-    ALLOWED_HOSTS = ["*"]
-    CSRF_TRUSTED_ORIGINS=[""]
+    ALLOWED_HOSTS = ["web-production-7d0e.up.railway.app"]
+    CSRF_TRUSTED_ORIGINS=["https://web-production-7d0e.up.railway.app"]
 
 # Application definition
 INSTALLED_APPS = [
