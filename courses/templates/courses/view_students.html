@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'courses/bootstrap/css/bootstrap.min.css' %}">
+    <title>{{ course.title }} - Enrolled Students</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #006400;">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'course_list' %}">Edu Learn</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Students List Section -->
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="display-4">Students Enrolled in {{ course.title }}</h1>
+            <a class="btn btn-primary fs-5">Total Students: {{ students.count }}</a>
+        </div>
+        
+
+        <p class="lead">Here is the list of students currently enrolled in this course:</p>
+
+        <!-- Students Table -->
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2" class="text-center">No students enrolled yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Back to Course List Button -->
+        <a href="{% url 'course_list' %}" class="btn btn-success mt-4">Back to Course List</a>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

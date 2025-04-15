@@ -1,0 +1,70 @@
+{% extends "courses/base.html" %}
+
+{% block title %}Available Courses{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Available Courses</h2>
+
+    <!-- Success and Error Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.level_tag == 'error' %}alert-danger{% else %}alert-success{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Button to Create a New Course -->
+    <a href="{% url 'course_create' %}" class="btn btn-success mb-3">Add a New Course</a>
+
+    <!-- Course List Table -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.description|truncatewords:10 }}</td>
+                    <td>
+                        <a href="{{ course.pk }}/" class="btn btn-secondary btn-sm">View Details</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">No courses available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<body>
+    <h1>Available Courses</h1>
+    <ul>
+        {% for course in courses %}
+            <li>
+                <a href="{{ course.pk }}/">{{ course.title }}</a>
+            </li>
+        {% empty %}
+            <li>No courses available.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'course_create' %}">Add a New Course</a>
+</body>
+</html> -->

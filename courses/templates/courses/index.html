@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Edu Learn</title>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #006400;">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Edu Learn</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Scroll to course list -->
+                        <a class="nav-link" href="#courses">Course List</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Scroll to all courses -->
+                        <a class="nav-link" href="#all-courses">List of All Courses</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4" id="courses">
+        <h1>List of All Courses</h1>
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Duration</th>
+                    <th>Photos</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in allCourses %}
+                <tr>
+                    <td>{{ t.id }}</td>
+                    <td>{{ t.title }}</td>
+                    <td>{{ t.description }}</td>
+                    <td>{{ t.duration }}</td>
+                    <td><img src="{{ t.thumbnail.url }}" width="150" height="100"></td>
+                    <td><a class="btn btn-success" href="{{ t.id }}/">Course Detail</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Course List Section -->
+    <div class="container mt-4" id="all-courses">
+        <h2>Course List</h2>
+        <ul>
+            {% for t in allCourses %}
+            <li>
+                <strong>ID:</strong> {{ t.id }} <br>
+                <strong>Title:</strong> {{ t.title }} <br>
+                <strong>Description:</strong> {{ t.description }} <br>
+                <strong>Duration:</strong> {{ t.duration }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

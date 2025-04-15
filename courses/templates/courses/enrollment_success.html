@@ -1,0 +1,16 @@
+
+{% extends "courses/base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-success text-center">
+        <h2>Enrollment Successful!</h2>
+        <p>
+            {{ student.name|default:student.email }} has been enrolled in
+            <strong>{{ course.title }}</strong>.
+        </p>
+        <a href="/" class="btn btn-primary">Back to Courses</a>
+    </div>
+</div>
+{% endblock %}
+

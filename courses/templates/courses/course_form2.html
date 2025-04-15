@@ -1,0 +1,35 @@
+{% extends "courses/base.html" %}
+
+{% block title %}
+    Add Course
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Add a New Course</h2>
+        <form method="post" enctype="multipart/form-data" class="p-4 border rounded bg-white shadow-sm">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success w-100">Save Course</button>
+        </form>
+        <a href="{% url 'course_list2' %}" class="btn btn-secondary mt-3">Back to Course List</a>
+    </div>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+</head>
+<body>
+    <h1>Add a New Course</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'course_list' %}">Back to Course List</a>
+</body>
+</html> -->
