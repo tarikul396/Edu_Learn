@@ -27,6 +27,7 @@ ENVIRONMENT = env('ENVIRONMENT', default='development')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
+
 # Debug and allowed hosts
 if ENVIRONMENT == "development":
     DEBUG = True
